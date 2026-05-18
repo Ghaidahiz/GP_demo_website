@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAVEV AI Detection Demo</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- STAGE 1: Welcome Screen -->
+        <div id="welcome-screen">
+            <h1>RAVEV Vision Test</h1>
+            <p>Can you tell the difference between a real e-commerce product and an AI-generated fake?</p>
+            <p>Let's see if you can beat RAVEV!</p>
+            <div class="btn-group">
+                <button class="btn-primary" onclick="startDemo()">Start Demo</button>
+            </div>
+            <footer>Developed by Shahad, Eman, Almaha, Ghaida, & Leena</footer>
+        </div>
+
+        <!-- STAGE 2: Challenge Screen -->
+        <div id="challenge-screen" class="hidden">
+            <h2 id="question-text">Do you think this product is Real or AI-Generated?</h2>
+            <p>Image <span id="current-image-number">1</span> of <span id="total-images">X</span></p>
+            
+            <div class="image-container">
+                <img id="product-image" src="" alt="Product Image">
+            </div>
+
+            <div class="btn-group">
+                <button class="btn-real" onclick="makeGuess('real')">Real</button>
+                <button class="btn-fake" onclick="makeGuess('fake')">Fake</button>
+            </div>
+        </div>
+
+        <!-- STAGE 3: Reveal Screen -->
+        <div id="reveal-screen" class="hidden">
+            <div id="feedback-content" class="feedback-box">
+                <div id="user-result" class="result-title"></div>
+                <p>The correct answer is: <strong id="actual-answer"></strong></p>
+                <hr style="border-color: var(--primary-purple); margin: 15px 0;">
+                <p><strong>RAVEV says:</strong> <span id="ravev-answer"></span></p>
+            </div>
+            
+            <div class="btn-group">
+                <button class="btn-primary" onclick="nextImage()">Next Image ➔</button>
+            </div>
+        </div>
+
+        <!-- STAGE 4: Final Scoreboard -->
+        <div id="score-screen" class="hidden">
+            <h1>Demo Complete!</h1>
+            <div class="scores">
+                <div class="score-card">
+                    Your Score
+                    <span id="final-human-score">0</span>
+                </div>
+                <div class="score-card">
+                    RAVEV Score
+                    <span id="final-ravev-score">0</span>
+                </div>
+            </div>
+            <h2 id="winner-announcement"></h2>
+            <div class="btn-group">
+                <button class="btn-primary" onclick="resetDemo()">Try Again</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Link the logic file at the end of the body -->
+    <script src="script.js"></script>
+</body>
+</html>
