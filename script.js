@@ -1,32 +1,27 @@
 /* --- THE DATABASE --- */
-// Make sure the imagePath matches where your HTML file is relative to the GP1 folder.
-// Update the 'ravenPrediction' to reflect your model's actual results!
-const database = [
-    // --- FAKE IMAGES ---
-    //{ imagePath: "GP1/fake0.png", groundTruth: "fake", ravenPrediction: "fake" },
+// This is the master pool of all possible images.
+const masterDatabase = [
+    // --- FAKE IMAGES (4) ---
     { imagePath: "GP1/fake1.png", groundTruth: "fake", ravenPrediction: "fake" },
-    //{ imagePath: "GP1/fake2.png", groundTruth: "fake", ravenPrediction: "fake" },
     { imagePath: "GP1/fake3.jpg", groundTruth: "fake", ravenPrediction: "fake" },
     { imagePath: "GP1/fake5.png", groundTruth: "fake", ravenPrediction: "real" },
     { imagePath: "GP1/fake6.png", groundTruth: "fake", ravenPrediction: "fake" },
-    //{ imagePath: "GP1/fake7.png", groundTruth: "fake", ravenPrediction: "fake" },
 
-    // --- REAL IMAGES ---
+    // --- REAL IMAGES (5) ---
     { imagePath: "GP1/real0.jpg", groundTruth: "real", ravenPrediction: "real" },
-   // { imagePath: "GP1/real1.jpg", groundTruth: "real", ravenPrediction: "real" },
     { imagePath: "GP1/real2.jpg", groundTruth: "real", ravenPrediction: "real" },
     { imagePath: "GP1/real4.png", groundTruth: "real", ravenPrediction: "real" },
-    { imagePath: "GP1/real5.jpg", groundTruth: "real", ravenPrediction: "fake" },
-    { imagePath: "GP1/real6.jpg", groundTruth: "real", ravenPrediction: "fake" },
-    //{ imagePath: "GP1/real7.jpg", groundTruth: "real", ravenPrediction: "real" },
+    { imagePath: "GP1/real5.jpg", groundTruth: "real", ravenPrediction: "fake" }, // Optional A
+    { imagePath: "GP1/real6.jpg", groundTruth: "real", ravenPrediction: "fake" }, // Optional B
 ];
 
 /* --- GAME LOGIC --- */
+let currentRoundDatabase = []; // The images actually used in the current game
 let currentIndex = 0;
 let humanScore = 0;
 let ravenScore = 0;
 
-// Function to randomly shuffle the array
+// Function to randomly shuffle an array
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -46,16 +41,32 @@ function startDemo() {
     currentIndex = 0;
     humanScore = 0;
     ravenScore = 0;
-    document.getElementById('total-images').innerText = database.length;
     
-    // Shuffle the database right before the game starts!
-    shuffleArray(database);
+    // 1. Get all the mandatory images (everything EXCEPT real5 and real6)
+    const mandatoryImages = masterDatabase.filter(img => 
+        img.imagePath !== "GP1/real5.jpg" && img.imagePath !== "GP1/real6.jpg"
+    );
+
+    // 2. Get the optional images and pick ONE at random
+    const optionalImages = masterDatabase.filter(img => 
+        img.imagePath === "GP1/real5.jpg" || img.imagePath === "GP1/real6.jpg"
+    );
+    const randomlySelectedImage = optionalImages[Math.floor(Math.random() * optionalImages.length)];
+
+    // 3. Build the database for this specific round (4 Fakes, 4 Reals)
+    currentRoundDatabase = [...mandatoryImages, randomlySelectedImage];
+
+    // 4. Update UI total (will be 8)
+    document.getElementById('total-images').innerText = currentRoundDatabase.length;
+    
+    // 5. Shuffle the array for unpredictable ordering
+    shuffleArray(currentRoundDatabase);
 
     loadChallenge();
 }
 
 function loadChallenge() {
-    const currentData = database[currentIndex];
+    const currentData = currentRoundDatabase[currentIndex];
     
     // Set image and counter
     document.getElementById('product-image').src = currentData.imagePath;
@@ -65,7 +76,7 @@ function loadChallenge() {
 }
 
 function makeGuess(userChoice) {
-    const currentData = database[currentIndex];
+    const currentData = currentRoundDatabase[currentIndex];
     
     // Check User Answer
     const isUserCorrect = (userChoice === currentData.groundTruth);
@@ -93,7 +104,7 @@ function makeGuess(userChoice) {
 
 function nextImage() {
     currentIndex++;
-    if (currentIndex < database.length) {
+    if (currentIndex < currentRoundDatabase.length) {
         loadChallenge();
     } else {
         showFinalScore();
@@ -101,8 +112,8 @@ function nextImage() {
 }
 
 function showFinalScore() {
-    document.getElementById('final-human-score').innerText = `${humanScore} / ${database.length}`;
-    document.getElementById('final-raven-score').innerText = `${ravenScore} / ${database.length}`;
+    document.getElementById('final-human-score').innerText = `${humanScore} / ${currentRoundDatabase.length}`;
+    document.getElementById('final-raven-score').innerText = `${ravenScore} / ${currentRoundDatabase.length}`;
 
     const winnerText = document.getElementById('winner-announcement');
     if (humanScore > ravenScore) {
