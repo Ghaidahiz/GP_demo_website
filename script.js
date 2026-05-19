@@ -3,22 +3,22 @@
 // Update the 'ravenPrediction' to reflect your model's actual results!
 const database = [
     // --- FAKE IMAGES ---
-    { imagePath: "GP1/fake0.png", groundTruth: "fake", ravenPrediction: "fake" },
+    //{ imagePath: "GP1/fake0.png", groundTruth: "fake", ravenPrediction: "fake" },
     { imagePath: "GP1/fake1.png", groundTruth: "fake", ravenPrediction: "fake" },
-    { imagePath: "GP1/fake2.png", groundTruth: "fake", ravenPrediction: "fake" },
+    //{ imagePath: "GP1/fake2.png", groundTruth: "fake", ravenPrediction: "fake" },
     { imagePath: "GP1/fake3.jpg", groundTruth: "fake", ravenPrediction: "fake" },
     { imagePath: "GP1/fake5.png", groundTruth: "fake", ravenPrediction: "real" },
     { imagePath: "GP1/fake6.png", groundTruth: "fake", ravenPrediction: "fake" },
-    { imagePath: "GP1/fake7.png", groundTruth: "fake", ravenPrediction: "fake" },
+    //{ imagePath: "GP1/fake7.png", groundTruth: "fake", ravenPrediction: "fake" },
 
     // --- REAL IMAGES ---
     { imagePath: "GP1/real0.jpg", groundTruth: "real", ravenPrediction: "real" },
-    { imagePath: "GP1/real1.jpg", groundTruth: "real", ravenPrediction: "real" },
+   // { imagePath: "GP1/real1.jpg", groundTruth: "real", ravenPrediction: "real" },
     { imagePath: "GP1/real2.jpg", groundTruth: "real", ravenPrediction: "real" },
     { imagePath: "GP1/real4.png", groundTruth: "real", ravenPrediction: "real" },
     { imagePath: "GP1/real5.jpg", groundTruth: "real", ravenPrediction: "fake" },
     { imagePath: "GP1/real6.jpg", groundTruth: "real", ravenPrediction: "fake" },
-    { imagePath: "GP1/real7.jpg", groundTruth: "real", ravenPrediction: "real" },
+    //{ imagePath: "GP1/real7.jpg", groundTruth: "real", ravenPrediction: "real" },
 ];
 
 /* --- GAME LOGIC --- */
