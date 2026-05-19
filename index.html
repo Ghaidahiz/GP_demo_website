@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAVEV AI Detection Demo</title>
+    <title>Raven AI Detection Demo</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,9 +12,9 @@
         
         <!-- STAGE 1: Welcome Screen -->
         <div id="welcome-screen">
-            <h1>RAVEV Vision Test</h1>
-            <p>Can you tell the difference between a real e-commerce product and an AI-generated fake?</p>
-            <p>Let's see if you can beat RAVEV!</p>
+            <h1>Raven Vision Test</h1>
+            <p>Can you tell the difference between a real e-image and an AI-generated one?</p>
+            <p>Let's see if you can beat raven!</p>
             <div class="btn-group">
                 <button class="btn-primary" onclick="startDemo()">Start Demo</button>
             </div>
@@ -23,7 +23,7 @@
 
         <!-- STAGE 2: Challenge Screen -->
         <div id="challenge-screen" class="hidden">
-            <h2 id="question-text">Do you think this product is Real or AI-Generated?</h2>
+            <h2 id="question-text">Do you think this image is Real or AI-Generated?</h2>
             <p>Image <span id="current-image-number">1</span> of <span id="total-images">X</span></p>
             
             <div class="image-container">
@@ -42,7 +42,7 @@
                 <div id="user-result" class="result-title"></div>
                 <p>The correct answer is: <strong id="actual-answer"></strong></p>
                 <hr style="border-color: var(--primary-purple); margin: 15px 0;">
-                <p><strong>RAVEV says:</strong> <span id="ravev-answer"></span></p>
+                <p><strong>Raven says:</strong> <span id="raven-answer"></span></p>
             </div>
             
             <div class="btn-group">
@@ -59,8 +59,8 @@
                     <span id="final-human-score">0</span>
                 </div>
                 <div class="score-card">
-                    RAVEV Score
-                    <span id="final-ravev-score">0</span>
+                    Raven Score
+                    <span id="final-raven-score">0</span>
                 </div>
             </div>
             <h2 id="winner-announcement"></h2>

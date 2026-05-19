@@ -1,17 +1,21 @@
-/* --- PURPLE THEME & STYLING --- */
+/* --- RAVEN AI THEME & STYLING --- */
 :root {
-    --primary-purple: #6b21a8; /* Deep purple */
-    --light-purple: #f3e8ff;
-    --success-green: #22c55e;
+    /* Colors extracted from the invitation card */
+    --bg-dark-top: #0a0414;      /* Deep dark navy/purple at the top */
+    --bg-mid: #2b134d;           /* Mid-tone deep purple */
+    --bg-light-bottom: #7b399d;  /* Vibrant magenta/purple at the bottom */
+    
+    --success-green: #10b981;
     --danger-red: #ef4444;
-    --text-dark: #1f2937;
+    --text-light: #f8f9fa;
     --white: #ffffff;
 }
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--light-purple);
-    color: var(--text-dark);
+    /* Replicating the diagonal gradient from the invitation */
+    background: linear-gradient(135deg, var(--bg-dark-top) 0%, var(--bg-mid) 45%, var(--bg-light-bottom) 100%);
+    color: var(--text-light);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,18 +25,23 @@ body {
 }
 
 .container {
-    background-color: var(--white);
+    /* Glassmorphism effect so the gradient shows through */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(107, 33, 168, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
     max-width: 600px;
     width: 100%;
     padding: 40px;
     text-align: center;
 }
 
-h1 {
-    color: var(--primary-purple);
+h1, h2 {
+    color: var(--white);
     margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 
 .hidden {
@@ -42,10 +51,11 @@ h1 {
 /* Image Display */
 .image-container {
     margin: 20px 0;
-    border: 4px solid var(--light-purple);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 12px;
     overflow: hidden;
-    background-color: #f9f9f9;
+    background-color: rgba(0, 0, 0, 0.3); /* Dark backing for images */
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
 }
 
 .image-container img {
@@ -70,10 +80,12 @@ button {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: transform 0.1s, opacity 0.2s;
+    transition: all 0.2s ease;
     display: flex;
     align-items: center;
     gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 button:active {
@@ -81,19 +93,29 @@ button:active {
 }
 
 .btn-primary {
-    background-color: var(--primary-purple);
+    background-color: rgba(255, 255, 255, 0.15);
     color: var(--white);
     width: 100%;
     justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
 }
 
-.btn-primary:hover { opacity: 0.9; }
+.btn-primary:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
 
 .btn-real {
     background-color: var(--success-green);
     color: var(--white);
     flex: 1;
     justify-content: center;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+.btn-real:hover {
+    background-color: #059669;
 }
 
 .btn-fake {
@@ -101,6 +123,11 @@ button:active {
     color: var(--white);
     flex: 1;
     justify-content: center;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+}
+
+.btn-fake:hover {
+    background-color: #dc2626;
 }
 
 /* Feedback Box */
@@ -108,8 +135,8 @@ button:active {
     margin-top: 20px;
     padding: 20px;
     border-radius: 8px;
-    background-color: var(--light-purple);
-    border: 2px solid var(--primary-purple);
+    background-color: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .result-title {
@@ -126,23 +153,24 @@ button:active {
 }
 
 .score-card {
-    background: var(--light-purple);
+    background: rgba(0, 0, 0, 0.2);
     padding: 20px;
     border-radius: 12px;
-    border: 2px solid var(--primary-purple);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     width: 40%;
 }
 
 .score-card span {
     display: block;
-    font-size: 32px;
+    font-size: 36px;
     font-weight: bold;
-    color: var(--primary-purple);
+    color: var(--white);
     margin-top: 10px;
+    text-shadow: 0 0 15px rgba(123, 57, 157, 0.8);
 }
 
 footer {
     margin-top: 40px;
     font-size: 12px;
-    color: #6b7280;
+    color: rgba(255, 255, 255, 0.5);
 }
